@@ -14,5 +14,6 @@ contract Store {
     longitude = _longitude;
     nearest_pole_id = _nearest_pole_id;
     timestamp = _timestamp;
+    emit dataSetter(latitude, longitude, nearest_pole_id, timestamp);
   }
 }
