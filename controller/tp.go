@@ -82,8 +82,10 @@ func (c *Client) create(a common.Address, cc *ethclient.Client, auth *bind.Trans
 	}
 }
 
-func (c Client) RegisterRoutes(a common.Address, cc *ethclient.Client, auth *bind.TransactOpts) {
-	http.HandleFunc("/api/v1/client/test", c.tester())
-	http.HandleFunc("/api/v1/client/state", c.state(a, cc))
-	http.HandleFunc("/api/v1/client/create", c.create(a, cc, auth))
+func (c Client) RegisterRoutes(a common.Address, cc *ethclient.Client, auth *bind.TransactOpts) *http.ServeMux {
+	Router := http.NewServeMux()
+	Router.HandleFunc("/api/v1/client/test", c.tester())
+	Router.HandleFunc("/api/v1/client/state", c.state(a, cc))
+	Router.HandleFunc("/api/v1/client/create", c.create(a, cc, auth))
+	return Router
 }

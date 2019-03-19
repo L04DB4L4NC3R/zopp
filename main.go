@@ -22,9 +22,9 @@ type server struct {
 	controllers map[string]*http.Handler
 }
 
-func (s *server) Startup() {
+func (s *server) Startup(h *http.Handler) {
 	log.Println("Listening...")
-	log.Fatal(http.ListenAndServe(s.port, nil))
+	log.Fatal(http.ListenAndServe(s.port, *h))
 }
 
 func main() {
@@ -76,6 +76,6 @@ func main() {
 	s := server{port: ":3000", host: "0.0.0.0", controllers: nil}
 
 	// register routes and startup
-	controller.StartClient(address, client, auth)
-	s.Startup()
+	mux := controller.StartClient(address, client, auth)
+	s.Startup(&mux)
 }
