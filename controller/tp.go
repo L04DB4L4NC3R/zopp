@@ -7,30 +7,33 @@ import (
 	"bytes"
 	"context"
 	"encoding/json"
+	"fmt"
 	"log"
 	"net/http"
 
+	"github.com/ethereum/go-ethereum/accounts/abi/bind"
+
 	"github.com/ethereum/go-ethereum/rlp"
 
+	store "github.com/angadsharma1016/technica/contracts"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/ethclient"
 )
 
-type client struct {
-	from          string
-	to            string
-	timestamp     string
-	class         string
-	ageSuggestive string
+type Client struct {
+	Latitude      string `json:"lat"`
+	Longitude     string `json:"lng"`
+	Timestamp     string `json:"time"`
+	NearestPoleID string `json:"id"`
 }
 
-func (c client) tester() http.HandlerFunc {
+func (c Client) tester() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		w.Write([]byte("client api working"))
+		w.Write([]byte("Client api working"))
 	}
 }
 
-func (c client) state(a common.Address, cc *ethclient.Client) http.HandlerFunc {
+func (c Client) state(a common.Address, cc *ethclient.Client) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 
 		ctx := context.Background()
@@ -54,7 +57,38 @@ func (c client) state(a common.Address, cc *ethclient.Client) http.HandlerFunc {
 		return
 	}
 }
-func (c client) RegisterRoutes(a common.Address, cc *ethclient.Client) {
+
+func (c *Client) create(a common.Address, cc *ethclient.Client, auth *bind.TransactOpts) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		json.NewDecoder(r.Body).Decode(&c)
+		log.Println(c)
+
+		instance, err := store.NewStore(a, cc)
+		if err != nil {
+			log.Fatal(err)
+			return
+		}
+		tx, err := instance.SetData(auth, c.NearestPoleID, c.Latitude, c.Longitude, c.Timestamp)
+		if err != nil {
+			log.Println(err)
+			return
+		}
+		fmt.Printf("tx sent: %s", tx.Hash().Hex())
+
+		// result, err := instance.WatchDataSetter(nil, key)
+		// if err != nil {
+		// 	log.Fatal(err)
+		// }
+		// fmt.Println(string(result[:]))
+
+		json.NewEncoder(w).Encode(struct {
+			Message string
+		}{"Done"})
+	}
+}
+
+func (c Client) RegisterRoutes(a common.Address, cc *ethclient.Client, auth *bind.TransactOpts) {
 	http.HandleFunc("/api/v1/client/test", c.tester())
 	http.HandleFunc("/api/v1/client/state", c.state(a, cc))
+	http.HandleFunc("/api/v1/client/create", c.create(a, cc, auth))
 }
