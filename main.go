@@ -67,12 +67,7 @@ func main() {
 
 	address := common.HexToAddress(os.Getenv("CONTRACT_ADDR"))
 	log.Println(address)
-	// instance, err := store.NewStore(address, client)
-	// if err != nil {
-	// 	log.Fatal(err)
-	// }
-	// log.Println("INSTANCE \n\n\n")
-	// log.Println(instance)
+
 	s := server{port: ":3000", host: "0.0.0.0", controllers: nil}
 
 	// register routes and startup
