@@ -75,15 +75,10 @@ func (c *Client) create(a common.Address, cc *ethclient.Client, auth *bind.Trans
 		}
 		fmt.Printf("tx sent: %s", tx.Hash().Hex())
 
-		// result, err := instance.WatchDataSetter(nil, key)
-		// if err != nil {
-		// 	log.Fatal(err)
-		// }
-		// fmt.Println(string(result[:]))
-
 		json.NewEncoder(w).Encode(struct {
 			Message string
-		}{"Done"})
+			Tx      string
+		}{"Done", tx.Hash().Hex()})
 	}
 }
 
