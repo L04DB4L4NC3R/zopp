@@ -1,5 +1,5 @@
 # ZOP
-CEA regulation defaulters contract
+World's first deployable decentralized system for fraud detection and live wire detection for the electricity department in India
 
 <br />
 
