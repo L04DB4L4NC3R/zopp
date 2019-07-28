@@ -27,7 +27,7 @@ required = ["github.com/ethereum/go-ethereum"]
 
 [[constraint]]
   name = "github.com/ethereum/go-ethereum"
-  version = "1.8.23"
+  version = "1.9.1"
 
 [[constraint]]
   name = "github.com/joho/godotenv"
