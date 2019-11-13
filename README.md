@@ -1,6 +1,6 @@
 # ZOP
 Deployable decentralized system for fraud detection and live wire detection for the electricity department in India
-
+Awesome Application
 <br />
 
 ### Installing and compiling sol
