@@ -2,15 +2,12 @@
 
 
 [[projects]]
-  branch = "master"
-  digest = "1:e574dab86697e4e3a8e2e815e0e932cfbf3618e74d6379d8732b33757e11b23d"
-  name = "github.com/allegro/bigcache"
-  packages = [
-    ".",
-    "queue",
-  ]
+  digest = "1:ef98291cf6c2dd0f53949a1899e9a58d3159ad44d20f74b62467bd2a807b01ce"
+  name = "github.com/VictoriaMetrics/fastcache"
+  packages = ["."]
   pruneopts = "UT"
-  revision = "e24eb225f15679bbe54f91bfa7da3b00e59b9768"
+  revision = "4d94f266cd3cecbcd97eaebee9e3d6d8cf918643"
+  version = "v1.4.6"
 
 [[projects]]
   digest = "1:f5322546f652db78b7a8efd35047a61d1e492abca2263e1c647eca49e1c8a354"
@@ -25,6 +22,14 @@
   packages = ["btcec"]
   pruneopts = "UT"
   revision = "2e60448ffcc6bf78332d1fe590260095f554dd78"
+
+[[projects]]
+  digest = "1:61406f6571eeb97717bdfaac37fa0bc5260621c4cbf3ce7635e9828dcbb5258a"
+  name = "github.com/cespare/xxhash"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "d7df74196a9e781ede915320c11c378c1b2f3a1f"
+  version = "v2.1.1"
 
 [[projects]]
   digest = "1:ffe9824d294da03b391f44e1ae8281281b4afc1bdaa9588c9097785e3af10cec"
@@ -61,7 +66,7 @@
   version = "v0.10.4"
 
 [[projects]]
-  digest = "1:137b6ba3557e415da95b91fd7d5983c2b3a2f6189bfd8afb5931565bba0509e3"
+  digest = "1:12d2212e4167330c9fa07167779955e55c40b4ca03b9d531a8e9530c68c6c060"
   name = "github.com/ethereum/go-ethereum"
   packages = [
     ".",
@@ -87,6 +92,7 @@
     "core/bloombits",
     "core/rawdb",
     "core/state",
+    "core/state/snapshot",
     "core/types",
     "core/vm",
     "crypto",
@@ -120,8 +126,8 @@
     "trie",
   ]
   pruneopts = "UT"
-  revision = "a718daa674a2e23cb0c8a6789f7e5467e705bbbd"
-  version = "v1.9.7"
+  revision = "cbc4ac264e9671898bff6ec7e434da3eca4bd273"
+  version = "v1.9.13"
 
 [[projects]]
   branch = "master"
@@ -265,22 +271,6 @@
   version = "v0.9.1"
 
 [[projects]]
-  digest = "1:4b9bd28bbf14271f4b89a6c401589ea5939d14138e0399c253c1939cc4252d2f"
-  name = "github.com/rs/cors"
-  packages = ["."]
-  pruneopts = "UT"
-  revision = "a62a804a8a009876ca59105f7899938a1349f4b3"
-  version = "v1.0"
-
-[[projects]]
-  digest = "1:9665a593c0199c193341b8b110e31b19c899923711fc70bde2c2f3eb2d337526"
-  name = "github.com/rs/xhandler"
-  packages = ["."]
-  pruneopts = "UT"
-  revision = "d9d9599b6aaf6a058cb7b1f48291ded2cbd13390"
-  version = "v1.0"
-
-[[projects]]
   branch = "develop"
   digest = "1:6deccaba5762377091f2e5b26dba70e630e01edb3f95d1a6a59d9b098bd4358f"
   name = "github.com/status-im/keycard-go"
@@ -345,10 +335,11 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:318a2bbd7c55cf075073d5f50e84451aa5e078144fdf855c74c453f0538fdf56"
+  digest = "1:f0ab0ff7dfc0e0dee9bb0b757a983ffb46335a036e348d662f87a3e6c3560e2b"
   name = "golang.org/x/crypto"
   packages = [
     "curve25519",
+    "hkdf",
     "pbkdf2",
     "ripemd160",
     "scrypt",
@@ -359,10 +350,9 @@
   revision = "4def268fd1a49955bfb3dda92fe3db4f924f2285"
 
 [[projects]]
-  digest = "1:97c3da23b5a655026576ffcc6903e3fbe0d59b9282e8eb7dbafb241543ba46c2"
+  digest = "1:499075870f4939e64e9d93c84c5fdf9b6253ec6e89c5dcb0a69f91292d6a2b30"
   name = "golang.org/x/net"
   packages = [
-    "context",
     "html",
     "html/atom",
     "html/charset",
